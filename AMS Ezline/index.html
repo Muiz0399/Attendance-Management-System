@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Attendance Management System</title>
+  </head>
+  <body>
+    <!-- Login Panel  -->
+    <div class="login-panel">
+      <div class="login-container">
+        <h2>Login Panel</h2>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button class="btn" onclick="login()">Login</button>
+      </div>
+    </div>
+
+    <!-- User Panel  -->
+    <div class="user-panel" style="display: none">
+      <header>
+        <h1>Welcome to User Panel</h1>
+      </header>
+
+      <div class="contain">
+        <!-- Buttons -->
+        <div class="buttons">
+          <button onclick="markAttendance()" id="markAttendance">
+            Mark Attendance
+          </button>
+          <button onclick="markLeave()" id="markLeave">Mark Leave</button>
+          <button onclick="viewAttendance()" id="viewAttendance">
+            View Attendance
+          </button>
+          <ul class="attendance-list" id="attendanceRecords"></ul>
+        </div>
+
+        <!-- profile  -->
+        <div id="profilePicture">
+          <h2>Profile Picture</h2>
+          <img
+            src="default-profile-pic.jpg"
+            alt="Profile Picture"
+            id="previewImage"
+          />
+          <input type="file" id="fileInput" accept="image/*" />
+          <button id="uploadBtn">Update Profile</button>
+        </div>
+      </div>
+      <!-- Leave Request  -->
+      <div id="leaveRequestForm">
+        <h2 class="leave">Leave Request</h2>
+        <form id="leaveForm">
+          <label for="leaveReason">Reason for Leave:</label>
+          <textarea
+            id="leaveReason"
+            rows="4"
+            cols="50"
+            placeholder="Enter reason for leave..."
+            required
+          ></textarea
+          ><br /><br />
+          <button type="submit">Submit Leave Request</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" style="display: none">
+      <header>
+        <h1>Welcome to Admin Panel</h1>
+      </header>
+
+      <div class="container">
+        <div class="sm">
+          <h2 class="smm">Student Management</h2>
+          <form id="studentForm">
+            <label for="studentName">Student Name:</label>
+            <input
+              type="text"
+              id="studentName"
+              name="studentName"
+              placeholder="Enter student name"
+            />
+
+            <label for="attendanceStatus">Attendance Status:</label>
+            <select id="attendanceStatus" name="attendanceStatus">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+
+            <button class="bn" type="button" onclick="addStudent()">Add Student</button>
+            <button class="bn" type="button" onclick="editStudent()">Edit Student</button>
+            <button class="bn" type="button" onclick="deleteStudent()">Delete Student</button>
+            <button class="bn" type="button" onclick="MarkedAttendance()">Mark Attendance</button>
+          </form>
+
+          <table id="studentsTable" class="students-table">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Attendance Status</th>
+              </tr>
+            </thead>
+            <tbody id="studentsList"></tbody>
+          </table>
+        </div>
+        <!-- LA  -->
+        <div class="leave-approval">
+          <h2>Leave Approval Module</h2>
+          <div class="stats">
+            <p>Total Leaves: <span id="totalLeaves">0</span></p>
+            <p>Total Presents: <span id="totalPresents">0</span></p>
+            <p>Total Absents: <span id="totalAbsents">0</span></p>
+          </div>
+
+          <!-- Leave request list -->
+          <div class="leave-requests">
+            <h3>Leave Requests</h3>
+            <ul id="leaveList"></ul>
+          </div>
+        </div>
+        <!-- A,E,D  -->
+
+        <!-- Reports  -->
+        <div class="reportss">
+          <div id="reportSection">
+            <h2>User Attendance Report</h2>
+            <label for="fromDate">From:</label>
+            <input type="date" id="fromDate" required /><br /><br />
+
+            <label for="toDate">To:</label>
+            <input type="date" id="toDate" required /><br /><br />
+
+            <button class="rb" onclick="generateReport()">
+              Generate Report
+            </button>
+
+            <!-- Display area for the generated report -->
+            <div id="reportDisplay"></div>
+          </div>
+          <div class="admin-grade">
+            <h2>Admin Panel - Attendance Grading System</h2>
+            <form id="gradingSystemForm">
+              <label for="attendanceDays">Attendance Days:</label>
+              <input
+                type="number"
+                id="attendanceDays"
+                name="attendanceDays"
+                min="0"
+                placeholder="Enter attendance days"
+              />
+            </form>
+            <button class="gs" type="button" onclick="calculateGrade()">
+              Calculate Grade
+            </button>
+
+            <div id="gradeResult" class="grade-display"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
